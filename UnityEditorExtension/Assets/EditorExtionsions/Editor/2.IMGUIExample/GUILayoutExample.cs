@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System;
 using System.Collections;
@@ -9,6 +10,35 @@ namespace EditorExtensions
 {
     public class GUILayoutExample : EditorWindow
     {
+        private PageType currentPageType;
+
+        [MenuItem("EditorExtensions/02.IMGUI/01.GUILayoutExample")]
+        static void OpenGUILayoutExample()
+        {
+            GetWindow<GUILayoutExample>().Show();
+        }
+
+        private enum PageType
+        {
+            Basic,
+            Other,
+        }
+
+        private void OnGUI()
+        {
+            currentPageType = (PageType)GUILayout.Toolbar((int)currentPageType, Enum.GetNames(typeof(PageType)));
+
+            if (this.currentPageType == PageType.Basic)
+            {
+                this.Basic();
+            }
+            else if (this.currentPageType == PageType.Other)
+            {
+                //Render somethin...
+            }
+        }
+
+        #region Basic
         private string textFieldValue;
         private string textAreaValue;
         private string passwordValue = String.Empty;//GUILayout.PasswordField 的参数需要有默认值，不能为空
@@ -17,14 +47,7 @@ namespace EditorExtensions
         private int toolbarIndex;
         private bool toggleValue;
         private int selectedGridIndex;
-
-        [MenuItem("EditorExtensions/02.IMGUI/01.GUILayoutExample")]
-        static void OpenGUILayoutExample()
-        {
-            GetWindow<GUILayoutExample>().Show();
-        }
-
-        private void OnGUI()
+        private void Basic()
         {
             GUILayout.Label("Laybel: Hello IMGUI");
 
@@ -130,7 +153,8 @@ namespace EditorExtensions
                 GUILayout.EndVertical();
             }
             GUILayout.EndScrollView();
-
         }
+        #endregion
+
     }
 }
