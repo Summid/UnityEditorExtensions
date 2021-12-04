@@ -21,6 +21,9 @@ namespace EditorExtensions
         private enum PageType
         {
             Basic,
+            Rotate,
+            Scale,
+            Color,
             Other,
         }
 
@@ -32,11 +35,79 @@ namespace EditorExtensions
             {
                 this.Basic();
             }
+            else if (this.currentPageType == PageType.Rotate)
+            {
+                this.Rotate();
+            }
+            else if (this.currentPageType == PageType.Scale)
+            {
+                this.Scale();
+            }
+            else if (this.currentPageType == PageType.Color)
+            {
+                this.Color();
+            }
             else if (this.currentPageType == PageType.Other)
             {
                 //Render somethin...
             }
+
         }
+
+
+
+        #region Rotate
+
+        private bool isRotateEffect = false;
+        private void Rotate()
+        {
+            this.isRotateEffect = GUILayout.Toggle(this.isRotateEffect, "Open Rotate Effect");
+
+            if (this.isRotateEffect)
+            {
+                GUIUtility.RotateAroundPivot(45f, Vector2.one * 200);//45都角，旋转点为(200,200)；屏幕坐标，(0,0)为左上角
+            }
+
+            this.Basic();
+        }
+
+        #endregion
+
+        #region Scale
+
+        private bool isScaleEffect = false;
+
+        private void Scale()
+        {
+            this.isScaleEffect = GUILayout.Toggle(this.isScaleEffect, "Scale Effect");
+
+            if (this.isScaleEffect)
+            {
+                GUIUtility.ScaleAroundPivot(Vector2.one * 0.5f, Vector2.one * 200);
+            }
+
+            this.Basic();
+        }
+
+        #endregion
+
+        #region  Color
+
+        private bool isColorEffect = false;
+
+        private void Color()
+        {
+            this.isColorEffect = GUILayout.Toggle(this.isColorEffect, "Color Effect");
+
+            if (this.isColorEffect)
+            {
+                GUI.color = UnityEngine.Color.green;
+            }
+
+            this.Basic();
+        }
+
+        #endregion
 
         #region Basic
         private string textFieldValue;
