@@ -32,31 +32,27 @@ namespace EditorExtensions
         {
             currentPageType = (PageType)GUILayout.Toolbar((int)currentPageType, Enum.GetNames(typeof(PageType)));
 
-            if (this.currentPageType == PageType.Basic)
+            switch (this.currentPageType)
             {
-                this.Basic();
+                case PageType.Basic:
+                    this.Basic();
+                    break;
+                case PageType.Enable:
+                    this.Enable();
+                    break;
+                case PageType.Rotate:
+                    this.Rotate();
+                    break;
+                case PageType.Scale:
+                    this.Scale();
+                    break;
+                case PageType.Color:
+                    this.Color();
+                    break;
+                case PageType.Other:
+                    //Render Somthing....
+                    break;
             }
-            else if (this.currentPageType == PageType.Enable)
-            {
-                this.Enable();
-            }
-            else if (this.currentPageType == PageType.Rotate)
-            {
-                this.Rotate();
-            }
-            else if (this.currentPageType == PageType.Scale)
-            {
-                this.Scale();
-            }
-            else if (this.currentPageType == PageType.Color)
-            {
-                this.Color();
-            }
-            else if (this.currentPageType == PageType.Other)
-            {
-                //Render somethin...
-            }
-
 
         }
 
