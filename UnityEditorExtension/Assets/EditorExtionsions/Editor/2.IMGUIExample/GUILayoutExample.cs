@@ -21,6 +21,7 @@ namespace EditorExtensions
         private enum PageType
         {
             Basic,
+            Enable,
             Rotate,
             Scale,
             Color,
@@ -47,6 +48,10 @@ namespace EditorExtensions
             {
                 this.Color();
             }
+            else if (this.currentPageType == PageType.Enable)
+            {
+                this.Enable();
+            }
             else if (this.currentPageType == PageType.Other)
             {
                 //Render somethin...
@@ -54,7 +59,19 @@ namespace EditorExtensions
 
         }
 
+        #region Enable
+        private bool isEnableGUI;
+        private void Enable()
+        {
+            this.isEnableGUI = GUILayout.Toggle(this.isEnableGUI, "Enable GUILayout");
+            if (GUI.enabled != this.isEnableGUI)
+            {
+                GUI.enabled = this.isEnableGUI;//GUI.enabled控制是否渲染
+            }
+            this.Basic();
+        }
 
+        #endregion
 
         #region Rotate
 
@@ -108,6 +125,9 @@ namespace EditorExtensions
         }
 
         #endregion
+
+
+
 
         #region Basic
         private string textFieldValue;
