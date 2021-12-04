@@ -36,6 +36,10 @@ namespace EditorExtensions
             {
                 this.Basic();
             }
+            else if (this.currentPageType == PageType.Enable)
+            {
+                this.Enable();
+            }
             else if (this.currentPageType == PageType.Rotate)
             {
                 this.Rotate();
@@ -48,14 +52,11 @@ namespace EditorExtensions
             {
                 this.Color();
             }
-            else if (this.currentPageType == PageType.Enable)
-            {
-                this.Enable();
-            }
             else if (this.currentPageType == PageType.Other)
             {
                 //Render somethin...
             }
+
 
         }
 
