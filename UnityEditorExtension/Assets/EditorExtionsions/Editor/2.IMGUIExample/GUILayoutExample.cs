@@ -30,7 +30,7 @@ namespace EditorExtensions
 
         private void OnGUI()
         {
-            currentPageType = (PageType)GUILayout.Toolbar((int)currentPageType, Enum.GetNames(typeof(PageType)));
+            this.currentPageType = (PageType)GUILayout.Toolbar((int)currentPageType, Enum.GetNames(typeof(PageType)));
 
             switch (this.currentPageType)
             {
@@ -79,7 +79,7 @@ namespace EditorExtensions
 
             if (this.isRotateEffect)
             {
-                GUIUtility.RotateAroundPivot(45f, Vector2.one * 200);//45都角，旋转点为(200,200)；屏幕坐标，(0,0)为左上角
+                GUIUtility.RotateAroundPivot(45f, Vector2.one * 200);//45度角，旋转点为(200,200)；屏幕坐标，(0,0)为左上角
             }
 
             this.Basic();
