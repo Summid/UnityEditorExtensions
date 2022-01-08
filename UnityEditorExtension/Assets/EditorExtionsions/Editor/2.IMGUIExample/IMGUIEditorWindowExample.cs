@@ -14,6 +14,7 @@ namespace EditorExtensions
         private APIMode currentAPIMode;
         private GUILayoutAPI layoutAPI = new GUILayoutAPI();
         private GUIAPI guiAPI = new GUIAPI();
+        private EditorGUIAPI editorAPI = new EditorGUIAPI();
 
         [MenuItem("EditorExtensions/02.IMGUI/01.IMGUIEditorWindowExample")]
         static void OpenGUILayoutExample()
@@ -25,6 +26,7 @@ namespace EditorExtensions
         {
             GUILayout,
             GUI,
+            EditorGUI,
         }
 
         private enum PageType
@@ -76,6 +78,10 @@ namespace EditorExtensions
             else if(this.currentAPIMode == APIMode.GUI)
             {
                 this.guiAPI.Draw();
+            }
+            else if (this.currentAPIMode == APIMode.EditorGUI)
+            {
+                this.editorAPI.Draw();
             }
         }
 
