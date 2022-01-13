@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -8,19 +8,19 @@ namespace EditorFramework
     public static class TypeEx
     {
         /// <summary>
-        /// »ñÈ¡³ÌĞò¼¯ÖĞÄ³¸öÀàµÄ×ÓÀà
+        /// è·å–ç¨‹åºé›†ä¸­æŸä¸ªç±»çš„å­ç±»
         /// </summary>
         /// <param name="self"></param>
         /// <returns></returns>
         public static IEnumerable<Type> GetSubTypesInAssemblies(this Type self)
         {
-            return AppDomain.CurrentDomain.GetAssemblies()//»ñÈ¡ËùÓĞ³ÌĞò¼¯
-                .SelectMany(assembly => assembly.GetTypes())//½«Ã¿¸ö³ÌĞò¼¯ÖĞËùÓĞType¶ÔÏóÌáÈ¡³öÀ´
-                .Where(type => type.IsSubclassOf(self));//»ñÈ¡selfÀàĞÍµÄ×ÓÀà
+            return AppDomain.CurrentDomain.GetAssemblies()//è·å–æ‰€æœ‰ç¨‹åºé›†
+                .SelectMany(assembly => assembly.GetTypes())//å°†æ¯ä¸ªç¨‹åºé›†ä¸­æ‰€æœ‰Typeå¯¹è±¡æå–å‡ºæ¥
+                .Where(type => type.IsSubclassOf(self));//è·å–selfç±»å‹çš„å­ç±»
         }
 
         /// <summary>
-        /// »ñÈ¡³ÌĞò¼¯ÖĞÄ³¸öÀàµÄ×ÓÀà£¬²¢ÇÒ¸Ã×ÓÀà±»Ä³¸öÌØĞÔËù±ê¼Ç
+        /// è·å–ç¨‹åºé›†ä¸­æŸä¸ªç±»çš„å­ç±»ï¼Œå¹¶ä¸”è¯¥å­ç±»è¢«æŸä¸ªç‰¹æ€§æ‰€æ ‡è®°
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="self"></param>
