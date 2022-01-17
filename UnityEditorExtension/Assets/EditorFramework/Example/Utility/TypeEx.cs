@@ -15,6 +15,7 @@ namespace EditorFramework
         public static IEnumerable<Type> GetSubTypesInAssemblies(this Type self)
         {
             return AppDomain.CurrentDomain.GetAssemblies()//获取所有程序集
+                .Where(assembly => assembly.FullName.StartsWith("Assembly"))//只提取Assembly开头的程序集，避免卡顿
                 .SelectMany(assembly => assembly.GetTypes())//将每个程序集中所有Type对象提取出来
                 .Where(type => type.IsSubclassOf(self));//获取self类型的子类
         }
