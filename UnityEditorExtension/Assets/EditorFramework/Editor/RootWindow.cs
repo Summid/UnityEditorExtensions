@@ -23,7 +23,8 @@ namespace EditorFramework
             Type editorWindowType = typeof(EditorWindow);
             // FieldInfo editorWindowParent = editorWindowType.GetField("m_Parent", BindingFlags.Instance | BindingFlags.NonPublic);//EditorWindow的host
 
-            this.types = editorWindowType.GetSubTypesWithClassAttributeInAssemblies<CustomEditorWindowAttribute>();
+            this.types = editorWindowType.GetSubTypesWithClassAttributeInAssemblies<CustomEditorWindowAttribute>()
+                .OrderBy(type => type.GetCustomAttribute<CustomEditorWindowAttribute>().RenderOrder);//根据RenderOrder来进行排序
         }
 
         private void OnGUI()
