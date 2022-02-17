@@ -14,7 +14,7 @@ namespace EditorFramework
         {
             Rect rect = EditorGUILayout.GetControlRect(GUILayout.Height(20));
 
-            if (GUI.Button(rect, this.path))
+            if (GUI.Button(rect, GUIContents.FolderEmpty))
             {
                 string path = EditorUtility.OpenFolderPanel("打开文件", Application.dataPath, "default name");
 
