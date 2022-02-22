@@ -13,8 +13,14 @@ namespace EditorFramework
         private void OnGUI()
         {
             Rect rect = EditorGUILayout.GetControlRect(GUILayout.Height(20));
+            
+            Rect[] rects = rect.VerticalSplit(rect.width - 30);
+            Rect leftRect = rects[0];
+            Rect rightRect = rects[1];
 
-            if (GUI.Button(rect, GUIContents.FolderEmpty))
+            GUI.Label(leftRect, this.path);
+
+            if (GUI.Button(rightRect, GUIContents.FolderEmpty))
             {
                 string path = EditorUtility.OpenFolderPanel("打开文件", Application.dataPath, "default name");
 
@@ -22,7 +28,7 @@ namespace EditorFramework
                 Debug.Log(path);
             }
 
-            var dragInfo = DragAndDropTool.Drag(Event.current, rect);
+            var dragInfo = DragAndDropTool.Drag(Event.current, leftRect);
 
             if (dragInfo.EnterArea && dragInfo.Completed && !dragInfo.Dragging)
             {
