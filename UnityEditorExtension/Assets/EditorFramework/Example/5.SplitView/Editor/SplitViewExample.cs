@@ -29,7 +29,7 @@ namespace EditorFramework
 
         private void OnGUI()
         {
-            var position = new Rect(Vector2.zero, this.position.size);
+            var position = this.LocalPosition().Zoom(-10, AnchorType.MiddleCenter);
             this.splitView.OnGUI(position);
         }
     }
