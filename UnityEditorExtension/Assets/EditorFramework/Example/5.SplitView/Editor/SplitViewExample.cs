@@ -19,11 +19,13 @@ namespace EditorFramework
 
         private void SplitViewOnFirstArena(Rect obj)
         {
+            obj.DrawOutline(Color.green);
             GUI.Box(obj, "First");
         }
 
         private void SplitViewOnSecondArena(Rect obj)
         {
+            obj.DrawOutline(Color.green);
             GUI.Box(obj, "Second");
         }
 
