@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,7 +21,16 @@ namespace EditorFramework
 
         private void OnGUI()
         {
-            GUILayout.Label(this.XMLContent);
+            var doc = new XmlDocument();
+            doc.LoadXml(this.XMLContent);
+            var rootNode = doc.SelectSingleNode("GUI");
+            foreach (XmlElement rootNodeChildNode in rootNode.ChildNodes)
+            {
+                if (rootNodeChildNode.Name == "Label")
+                {
+                    GUILayout.Label(rootNodeChildNode.InnerText);
+                }
+            }
         }
     }
 }
