@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1fbc5094ee3b14bb634716073ce6db, type: 3}
   m_Name: ScriptableObjectExample
   m_EditorClassIdentifier: 
-  IntValue: 0
-  StringValue: 
+  IntValue: 233
+  StringValue: 233
