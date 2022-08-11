@@ -13,14 +13,15 @@ namespace EditorFramework
 
         private string XMLContent;
 
+        public List<GUIBase> XMLGUI;
+
         private void OnEnable()
         {
             var xmlFileAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(XMLFilePath);
             this.XMLContent = xmlFileAsset.text;
-        }
 
-        private void OnGUI()
-        {
+            this.XMLGUI = new List<GUIBase>();
+
             var doc = new XmlDocument();
             doc.LoadXml(this.XMLContent);
             var rootNode = doc.SelectSingleNode("GUI");
@@ -28,8 +29,22 @@ namespace EditorFramework
             {
                 if (rootNodeChildNode.Name == "Label")
                 {
-                    GUILayout.Label(rootNodeChildNode.InnerText);
+                    this.XMLGUI.Add(new XMLGUILabel(rootNodeChildNode.InnerText));                    
                 }
+                else if (rootNodeChildNode.Name == "TextField")
+                {
+                    this.XMLGUI.Add(new XMLGUITextField(rootNodeChildNode.InnerText));                    
+                }
+            }
+        }
+
+        private void OnGUI()
+        {
+            var selfSize = this.LocalPosition();
+            foreach (var guiBase in this.XMLGUI)
+            {
+                //var rect = GUILayoutUtility.GetRect(selfSize.width, selfSize.height);
+                guiBase.OnGUI(default);
             }
         }
     }
