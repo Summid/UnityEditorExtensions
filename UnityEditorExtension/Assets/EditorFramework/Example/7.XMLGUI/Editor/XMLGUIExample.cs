@@ -27,13 +27,20 @@ namespace EditorFramework
             var rootNode = doc.SelectSingleNode("GUI");
             foreach (XmlElement rootNodeChildNode in rootNode.ChildNodes)
             {
-                if (rootNodeChildNode.Name == "Label")
+                switch (rootNodeChildNode.Name)
                 {
-                    this.XMLGUI.Add(new XMLGUILabel(rootNodeChildNode.InnerText));                    
-                }
-                else if (rootNodeChildNode.Name == "TextField")
-                {
-                    this.XMLGUI.Add(new XMLGUITextField(rootNodeChildNode.InnerText));                    
+                    case "Label":
+                        this.XMLGUI.Add(new XMLGUILabel(rootNodeChildNode.InnerText));
+                        break;
+                    case "TextField":
+                        this.XMLGUI.Add(new XMLGUITextField(rootNodeChildNode.InnerText));
+                        break;
+                    case "TextArea":
+                        this.XMLGUI.Add(new XMLGUITextArea(rootNodeChildNode.InnerText));
+                        break;
+                    case "Button":
+                        this.XMLGUI.Add(new XMLGUIButton(rootNodeChildNode.InnerText));
+                        break;
                 }
             }
         }

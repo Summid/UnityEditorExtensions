@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace EditorFramework
+{
+    public class XMLGUITextArea : GUIBase
+    {
+        public string Text;
+
+        public XMLGUITextArea(string text)
+        {
+            this.Text = text;
+        }
+
+        public override void OnGUI(Rect position)
+        {
+            base.OnGUI(position);
+
+            this.Text = GUILayout.TextArea(this.Text);
+        }
+
+        protected override void OnDispose()
+        {
+            
+        }
+    }
+}

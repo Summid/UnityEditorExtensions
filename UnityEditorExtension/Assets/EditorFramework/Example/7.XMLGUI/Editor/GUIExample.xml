@@ -2,4 +2,6 @@
 <GUI>
 	<Label>Hello XMLGUI</Label>
 	<TextField>Please Input Text Field</TextField>
+	<TextArea>Please Input Text Area</TextArea>
+	<Button>Click Button</Button>
 </GUI>
