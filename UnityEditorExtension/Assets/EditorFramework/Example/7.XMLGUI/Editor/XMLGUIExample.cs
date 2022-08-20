@@ -13,44 +13,31 @@ namespace EditorFramework
 
         private string XMLContent;
 
-        public List<GUIBase> XMLGUI;
-
+        private XMLGUI xmlGUI;
         private void OnEnable()
         {
             var xmlFileAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(XMLFilePath);
             this.XMLContent = xmlFileAsset.text;
 
-            this.XMLGUI = new List<GUIBase>();
+            this.xmlGUI = new XMLGUI();
+            this.xmlGUI.ReadXML(this.XMLContent);
 
-            var doc = new XmlDocument();
-            doc.LoadXml(this.XMLContent);
-            var rootNode = doc.SelectSingleNode("GUI");
-            foreach (XmlElement rootNodeChildNode in rootNode.ChildNodes)
+            //≤‚ ‘“ªœ¬
+            this.xmlGUI.GetGUIBaseById<XMLGUIButton>("loginButton").OnClick += () =>
             {
-                switch (rootNodeChildNode.Name)
-                {
-                    case "Label":
-                        this.XMLGUI.Add(new XMLGUILabel(rootNodeChildNode.InnerText));
-                        break;
-                    case "TextField":
-                        this.XMLGUI.Add(new XMLGUITextField(rootNodeChildNode.InnerText));
-                        break;
-                    case "TextArea":
-                        this.XMLGUI.Add(new XMLGUITextArea(rootNodeChildNode.InnerText));
-                        break;
-                    case "Button":
-                        this.XMLGUI.Add(new XMLGUIButton(rootNodeChildNode.InnerText));
-                        break;
-                }
-            }
+                Debug.Log("loginButton Clicked");
+
+                this.xmlGUI.GetGUIBaseById<XMLGUILabel>("label1").Text = "you click the button";
+                this.xmlGUI.GetGUIBaseById<XMLGUITextField>("username").Text = "Summid";
+                this.xmlGUI.GetGUIBaseById<XMLGUITextArea>("description").Text = "A furry engineer";
+                
+            };
         }
 
         private void OnGUI()
         {
-            var selfSize = this.LocalPosition();
-            foreach (var guiBase in this.XMLGUI)
+            foreach (var guiBase in this.xmlGUI.GUIBases)
             {
-                //var rect = GUILayoutUtility.GetRect(selfSize.width, selfSize.height);
                 guiBase.OnGUI(default);
             }
         }

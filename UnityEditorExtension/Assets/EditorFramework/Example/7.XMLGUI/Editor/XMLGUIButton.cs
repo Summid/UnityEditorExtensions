@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EditorFramework
 {
-    public class XMLGUIButton : GUIBase
+    public class XMLGUIButton : XMLGUIBase
     {
         public string Label;
 

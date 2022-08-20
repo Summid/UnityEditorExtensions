@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EditorFramework
 {
-    public class XMLGUITextField : GUIBase
+    public class XMLGUITextField : XMLGUIBase
     {
         public string Text;
 
