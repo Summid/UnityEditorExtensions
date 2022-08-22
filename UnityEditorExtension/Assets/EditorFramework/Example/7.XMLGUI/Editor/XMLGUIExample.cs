@@ -36,10 +36,7 @@ namespace EditorFramework
 
         private void OnGUI()
         {
-            foreach (var guiBase in this.xmlGUI.GUIBases)
-            {
-                guiBase.OnGUI(default);
-            }
+            this.xmlGUI.Draw();
         }
     }
 }

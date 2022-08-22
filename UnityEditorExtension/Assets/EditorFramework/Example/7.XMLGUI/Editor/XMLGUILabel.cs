@@ -17,7 +17,7 @@ namespace EditorFramework
         {
             base.OnGUI(position);
 
-            GUILayout.Label(this.Text);
+            GUI.Label(position, this.Text);
         }
 
         protected override void OnDispose()

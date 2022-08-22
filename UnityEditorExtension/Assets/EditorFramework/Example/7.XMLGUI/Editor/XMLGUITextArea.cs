@@ -17,7 +17,7 @@ namespace EditorFramework
         {
             base.OnGUI(position);
 
-            this.Text = GUILayout.TextArea(this.Text);
+            this.Text = GUI.TextArea(position, this.Text);
         }
 
         protected override void OnDispose()

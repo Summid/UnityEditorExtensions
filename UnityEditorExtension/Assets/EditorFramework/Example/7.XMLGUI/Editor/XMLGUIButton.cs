@@ -20,7 +20,7 @@ namespace EditorFramework
         {
             base.OnGUI(position);
 
-            if (GUILayout.Button(this.Label))
+            if (GUI.Button(position, this.Label))
             {
                 this.OnClick?.Invoke();
             }
