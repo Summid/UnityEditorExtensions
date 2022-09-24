@@ -28,21 +28,48 @@ namespace EditorFramework
         //缩放，pixel可为负
         public static Rect Zoom(this Rect rect, float pixel, AnchorType anchorType)
         {
-            float newWidth = rect.width + pixel;
-            float newHeight = rect.height + pixel;
+            return Zoom(rect, new Vector2(pixel, pixel), anchorType);
+        }
 
-            //坐标在rect左上角
-            if (anchorType == AnchorType.MiddleCenter)
+        public static Rect Zoom(this Rect rect, Vector2 pixelOffset, AnchorType anchorType)
+        {
+            float tempW = rect.width + pixelOffset.x;
+            float tempH = rect.height + pixelOffset.y;
+            switch (anchorType)
             {
-                rect.x -= pixel * 0.5f;
-                rect.y -= pixel * 0.5f;
+                case AnchorType.UpperLeft:
+                    break;
+                case AnchorType.UpperCenter:
+                    rect.x -= (tempW - rect.width) * 0.5f;
+                    break;
+                case AnchorType.UpperRight:
+                    rect.x -= tempW - rect.width;
+                    break;
+                case AnchorType.MiddleLeft:
+                    rect.y -= (tempH - rect.height) * 0.5f;
+                    break;
+                case AnchorType.MiddleCenter:
+                    rect.x -= (tempW - rect.width) * 0.5f;
+                    rect.y -= (tempH - rect.height) * 0.5f;
+                    break;
+                case AnchorType.MiddleRight:
+                    rect.x -= tempW - rect.width;
+                    rect.y -= (tempH - rect.height) * 0.5f;
+                    break;
+                case AnchorType.LowerLeft:
+                    rect.y -= tempH - rect.height;
+                    break;
+                case AnchorType.LowerCenter:
+                    rect.x -= (tempW - rect.width) * 0.5f;
+                    rect.y -= tempH - rect.height;
+                    break;
+                case AnchorType.LowerRight:
+                    rect.x -= tempW - rect.width;
+                    rect.y -= tempH - rect.height;
+                    break;
             }
-            else
-            {
-                //to do
-            }
-            rect.width = newWidth;
-            rect.height = newHeight;
+            rect.width = tempW;
+            rect.height = tempH;
             return rect;
         }
 
